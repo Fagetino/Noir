@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_ajtJoueurs"
+        android:fontFamily="@font/archivo_black_java"
+        android:text="@string/txt_ajtPhrase"
+        android:textColor="@color/colorText"
+        android:textSize="30sp"
+        android:layout_margin="15dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <CheckBox
+        android:id="@+id/cB_phraseParDefaut"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/cac_phraseParDefault"
+        android:fontFamily="@font/archivo_black_java"
+        android:textColor="@color/colorText"
+        android:textSize="18sp"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/ListPhrases"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/lL_ajoutPhrases"
+            android:layout_alignParentTop="true"/>
+
+        <LinearLayout
+            android:id="@+id/lL_ajoutPhrases"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_alignParentBottom="true">
+            <EditText
+                android:id="@+id/txtEdit_Phrase"
+                android:layout_width="221dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/archivo_black_java"
+                android:hint="@string/txt_phrase"
+                android:textColor="@color/colorText"
+                android:textColorHint="@color/colorText"
+                android:autofillHints=""
+                android:inputType="text"/>
+
+            <ImageView
+                android:id="@+id/img_Plus"
+                android:layout_width="34dp"
+                android:layout_height="31dp"
+                android:contentDescription="@string/img_plus"
+                android:scaleType="centerInside"
+                android:tint="#FFFFFF"
+                app:srcCompat="@drawable/plus"/>
+
+            <ImageView
+                android:id="@+id/img_Fleche"
+                android:layout_width="34dp"
+                android:layout_height="31dp"
+                android:textSize="18sp"
+                android:tint="@color/cardview_light_background"
+                android:textStyle="bold"
+                app:srcCompat="@drawable/fleche"
+                android:contentDescription="@string/img_fleche" />
+        </LinearLayout>
+    </RelativeLayout>
+
+</LinearLayout>

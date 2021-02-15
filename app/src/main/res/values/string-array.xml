@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sA_phrases">
+        <item>X si tu as déjà menti pour chopper bois 4 gorgées, sinon distribue-les</item>
+        <item>X distribue 2 gorgées</item>
+        <item>Tous ceux qui ont des lunettes distribue 1 gorgée</item>
+        <item>Si t\'as déjà essayer ou chopper la soeur d\'une personne ici boit un cul sec</item>
+        <item>X distribue 3 gorgées à Y ou Z</item>
+        <item>X boit 2 gorgées si tu ne connais pas la date de naissance de Y</item>
+    </string-array>
+</resources>
