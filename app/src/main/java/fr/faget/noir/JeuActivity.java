@@ -160,21 +160,18 @@ public class JeuActivity extends AppCompatActivity {
                         //Affichage d'une phrase à chaque clique
                         afficherPhrase(tVPhrase, oldPhrases);
                     } else {
+                        //Si c'est le premier clique sur le bouton droit après avoir cliquer sur le bouton gauche
+                        //on ajoute la derniere phrase de la lise aux phrases déjà affichée et on la supprime de la liste
+                        //des phrases à affichée car elle est déjà.
                         if (!clickD){
-                            indexPhrase = Phrase.nbPhrases() - 2;
-                            phraseAffichee = Phrase.getPhrase(indexPhrase);
-                            tVPhrase.setText(phraseAffichee);
-                            oldPhrases.add(Phrase.getPhrase(indexPhrase+1));
-                            oldPhrases.add(phraseAffichee);
-                            Phrase.supprimerPhrase(indexPhrase + 1);
-                            Phrase.supprimerPhrase(indexPhrase);
-                        } else{
-                            indexPhrase = Phrase.nbPhrases() - 1;
-                            phraseAffichee = Phrase.getPhrase(indexPhrase);
-                            tVPhrase.setText(phraseAffichee);
-                            oldPhrases.add(phraseAffichee);
-                            Phrase.supprimerPhrase(indexPhrase);
+                            oldPhrases.add(Phrase.getPhrase(Phrase.nbPhrases()-1));
+                            Phrase.supprimerPhrase(Phrase.nbPhrases()-1);
                         }
+                        indexPhrase = Phrase.nbPhrases() - 1;
+                        phraseAffichee = Phrase.getPhrase(indexPhrase);
+                        tVPhrase.setText(phraseAffichee);
+                        oldPhrases.add(phraseAffichee);
+                        Phrase.supprimerPhrase(indexPhrase);
                         nbClickG=0;
                         clickD=true;
                     }
@@ -208,7 +205,6 @@ public class JeuActivity extends AppCompatActivity {
                     Phrase.ajouterPhrase(phraseAffichee);
                     oldPhrases.remove(indexPhrase+1);
                     oldPhrases.remove(indexPhrase);
-                    clickD=false;
                 } else {
                     indexPhrase = oldPhrases.size()-1;
                     phraseAffichee = oldPhrases.get(indexPhrase);
@@ -216,6 +212,7 @@ public class JeuActivity extends AppCompatActivity {
                     Phrase.ajouterPhrase(phraseAffichee);
                     oldPhrases.remove(indexPhrase);
                 }
+                clickD=false;
             }
         });
     }
