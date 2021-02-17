@@ -28,7 +28,7 @@ public class JeuActivity extends AppCompatActivity {
         int indexJoueurX, indexJoueurY, indexJoueurZ; //Index des joueurs tirés au hazard
         String joueurX, joueurY; //Permet d'enregistrer le joueur tirer au hazard
 
-        if (!Phrase.isEmpty()){
+        if (!Phrase.isEmpty()) {
             indexPhrase = nombreAleatoire(Phrase.nbPhrases());
             phraseAffichee = Phrase.getPhrase(indexPhrase);
             occurence = Phrase.rechercheOccurence(indexPhrase);
@@ -120,7 +120,7 @@ public class JeuActivity extends AppCompatActivity {
                     //Supression de la phrase affichée de la liste des phrases
                     Phrase.supprimerPhrase(indexPhrase);
             } //end case
-        } else{
+        } else {
             //Afficher phrase de fin
             textView.setText(getResources().getText(R.string.phraseFin));
         }
@@ -132,7 +132,7 @@ public class JeuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_jeu);
 
-        //View
+        //Views
         final TextView tVPhrase = findViewById(R.id.txt_phrase);
         Button btnDroit = findViewById(R.id.b_Droite);
         final Button btnGauche = findViewById(R.id.b_Gauche);
@@ -154,16 +154,21 @@ public class JeuActivity extends AppCompatActivity {
                 if (!btnGauche.isEnabled()){
                     btnGauche.setEnabled(true);
                 }
-                if (nbClickG==0){
-                    //Affichage d'une phrase à chaque clique
-                    afficherPhrase(tVPhrase, oldPhrases);
-                } else {
-                    indexPhrase = Phrase.nbPhrases()-1;
-                    phraseAffichee = Phrase.getPhrase(indexPhrase);
-                    tVPhrase.setText(phraseAffichee);
-                    oldPhrases.add(phraseAffichee);
-                    Phrase.supprimerPhrase(indexPhrase);
-
+                if (!Phrase.isEmpty()) {
+                    if (nbClickG == 0) {
+                        //Affichage d'une phrase à chaque clique
+                        afficherPhrase(tVPhrase, oldPhrases);
+                    } else {
+                        indexPhrase = Phrase.nbPhrases() - 1;
+                        phraseAffichee = Phrase.getPhrase(indexPhrase);
+                        tVPhrase.setText(phraseAffichee);
+                        oldPhrases.add(phraseAffichee);
+                        Phrase.supprimerPhrase(indexPhrase);
+                        nbClickG=0;
+                    }
+                }else {
+                    //Afficher phrase de fin
+                    tVPhrase.setText(getResources().getText(R.string.phraseFin));
                 }
             }
         });
