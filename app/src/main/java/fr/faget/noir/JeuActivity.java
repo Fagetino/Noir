@@ -16,6 +16,7 @@ import Jeu.Phrase;
 public class JeuActivity extends AppCompatActivity {
 
     private int nbClickG = 0;
+    private boolean clickD = false;
     private int indexPhrase;//index de la phrase à afficher
     private String phraseAffichee; //Phrase affichee
 
@@ -134,7 +135,7 @@ public class JeuActivity extends AppCompatActivity {
 
         //Views
         final TextView tVPhrase = findViewById(R.id.txt_phrase);
-        Button btnDroit = findViewById(R.id.b_Droite);
+        final Button btnDroit = findViewById(R.id.b_Droite);
         final Button btnGauche = findViewById(R.id.b_Gauche);
 
         //Variables
@@ -159,16 +160,28 @@ public class JeuActivity extends AppCompatActivity {
                         //Affichage d'une phrase à chaque clique
                         afficherPhrase(tVPhrase, oldPhrases);
                     } else {
-                        indexPhrase = Phrase.nbPhrases() - 1;
-                        phraseAffichee = Phrase.getPhrase(indexPhrase);
-                        tVPhrase.setText(phraseAffichee);
-                        oldPhrases.add(phraseAffichee);
-                        Phrase.supprimerPhrase(indexPhrase);
+                        if (!clickD){
+                            indexPhrase = Phrase.nbPhrases() - 2;
+                            phraseAffichee = Phrase.getPhrase(indexPhrase);
+                            tVPhrase.setText(phraseAffichee);
+                            oldPhrases.add(Phrase.getPhrase(indexPhrase+1));
+                            oldPhrases.add(phraseAffichee);
+                            Phrase.supprimerPhrase(indexPhrase + 1);
+                            Phrase.supprimerPhrase(indexPhrase);
+                        } else{
+                            indexPhrase = Phrase.nbPhrases() - 1;
+                            phraseAffichee = Phrase.getPhrase(indexPhrase);
+                            tVPhrase.setText(phraseAffichee);
+                            oldPhrases.add(phraseAffichee);
+                            Phrase.supprimerPhrase(indexPhrase);
+                        }
                         nbClickG=0;
+                        clickD=true;
                     }
                 }else {
                     //Afficher phrase de fin
                     tVPhrase.setText(getResources().getText(R.string.phraseFin));
+                    btnDroit.setEnabled(false);
                 }
             }
         });
@@ -177,6 +190,10 @@ public class JeuActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
+                //Si le bouton de gauche est désactivé, on l'active
+                if (!btnDroit.isEnabled()){
+                    btnDroit.setEnabled(true);
+                }
                 //On incremente le nombre de clique sur la partie gauche
                 nbClickG++;
                 if (oldPhrases.isEmpty()){
@@ -191,6 +208,7 @@ public class JeuActivity extends AppCompatActivity {
                     Phrase.ajouterPhrase(phraseAffichee);
                     oldPhrases.remove(indexPhrase+1);
                     oldPhrases.remove(indexPhrase);
+                    clickD=false;
                 } else {
                     indexPhrase = oldPhrases.size()-1;
                     phraseAffichee = oldPhrases.get(indexPhrase);
