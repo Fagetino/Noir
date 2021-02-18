@@ -56,6 +56,7 @@ public class JeuActivity extends AppCompatActivity {
                     //Afficher phrase de fin
                     tVPhrase.setText(getResources().getText(R.string.phraseFin));
                     btnDroit.setEnabled(false);
+                    jeu.setFini(true);
                 }
             }
         });

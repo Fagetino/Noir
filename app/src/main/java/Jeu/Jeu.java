@@ -12,6 +12,10 @@ public class Jeu {
     private final ArrayList<String> oldPhrases= new ArrayList<>();
     private int nbClickG=0; //Permet de verifier combien de fois on a cliquer à gauche après avoir cliqué à droite
     private boolean clickD=false; //vrai si c'est le premier clique à droite après avoir cliqué à gauche
+
+
+
+    private boolean fini=false; //Indique que la phrase de fin est affichée
     private int indexPhrase=0; //index de la phrase à afficher
     private String phraseAffichee=""; //Phrase affichee
 
@@ -20,6 +24,10 @@ public class Jeu {
         this.context=context;
     }
 
+
+    public void setFini(boolean fini) {
+        this.fini = fini;
+    }
 
     public void setNbClickG(int nbClickG) {
         this.nbClickG = nbClickG;
@@ -138,6 +146,8 @@ public class Jeu {
         } else {
             //Afficher phrase de fin
             textView.setText(context.getResources().getText(R.string.phraseFin));
+            //Indique que la phrase de fin est affichée
+            fini=true;
         }
     }
 
@@ -145,7 +155,7 @@ public class Jeu {
         //Si c'est le premier clique sur la partie droite après avoir cliquer sur la partie gauche
         //on ajoute la derniere phrase de la lise aux phrases déjà affichée et on la supprime de la liste
         //des phrases à affichée car elle l'est déjà.
-        if (!clickD){
+        if (!clickD && Phrase.nbPhrases()>1){
             oldPhrases.add(Phrase.getPhrase(Phrase.nbPhrases()-1));
             Phrase.supprimerPhrase(Phrase.nbPhrases()-1);
         }
@@ -167,7 +177,7 @@ public class Jeu {
         //Si c'est le premier clique sur la partie gauche après avoir cliquer sur la partie droite
         //on ajoute la derniere phrase de la lise aux phrases à affichée et on la supprime de la liste
         //des phrases déjà affichée car elle l'est déjà.
-        if (nbClickG==1 && !Phrase.isEmpty()){
+        if (nbClickG==1 && !fini){
             Phrase.ajouterPhrase(oldPhrases.get(oldPhrases.size()-1));
             oldPhrases.remove(oldPhrases.size()-1);
         }
@@ -181,6 +191,10 @@ public class Jeu {
         oldPhrases.remove(indexPhrase);
         //Réinitialisation du clique sur la partie droite
         clickD=false;
+        //On indique que la phrase de fin n'est plus affichée
+        if (fini){
+            fini=false;
+        }
     }
 
 
