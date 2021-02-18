@@ -15,9 +15,9 @@ import Jeu.Phrase;
 
 public class JeuActivity extends AppCompatActivity {
 
-    private int nbClickG = 0;
-    private boolean clickD = false;
-    private int indexPhrase;//index de la phrase à afficher
+    private int nbClickG = 0; //Permet de verifier combien de fois on a cliquer à gauche après avoir cliqué à droite
+    private boolean clickD = false; //vrai si c'est le premier clique à droite après avoir cliqué à gauche
+    private int indexPhrase; //index de la phrase à afficher
     private String phraseAffichee; //Phrase affichee
 
     public int nombreAleatoire(int borneMax){
@@ -160,19 +160,24 @@ public class JeuActivity extends AppCompatActivity {
                         //Affichage d'une phrase à chaque clique
                         afficherPhrase(tVPhrase, oldPhrases);
                     } else {
-                        //Si c'est le premier clique sur le bouton droit après avoir cliquer sur le bouton gauche
+                        //Si c'est le premier clique sur la partie droite après avoir cliquer sur la partie gauche
                         //on ajoute la derniere phrase de la lise aux phrases déjà affichée et on la supprime de la liste
-                        //des phrases à affichée car elle est déjà.
+                        //des phrases à affichée car elle l'est déjà.
                         if (!clickD){
                             oldPhrases.add(Phrase.getPhrase(Phrase.nbPhrases()-1));
                             Phrase.supprimerPhrase(Phrase.nbPhrases()-1);
                         }
+                        //Récupération de la phrase à afficher
                         indexPhrase = Phrase.nbPhrases() - 1;
                         phraseAffichee = Phrase.getPhrase(indexPhrase);
+                        //Affichage de la phrase
                         tVPhrase.setText(phraseAffichee);
+                        //On met la phrase affichée dans les phrases déjà affichée
                         oldPhrases.add(phraseAffichee);
                         Phrase.supprimerPhrase(indexPhrase);
+                        //On remet le nombre de clique sur la partie gauche à 0
                         nbClickG=0;
+                        //On indique que le premier clique sur la partie droite a été effectué
                         clickD=true;
                     }
                 }else {
@@ -195,18 +200,23 @@ public class JeuActivity extends AppCompatActivity {
                 nbClickG++;
                 if (oldPhrases.isEmpty()){
                     btnGauche.setEnabled(false);
-                //Si c'est le premier clique sur la partie gauche de l'écran on affiche la deuxième phrase
-                //car la premiere est déjà affiché
                 } else{
+                    //Si c'est le premier clique sur la partie gauche après avoir cliquer sur la partie droite
+                    //on ajoute la derniere phrase de la lise aux phrases à affichée et on la supprime de la liste
+                    //des phrases déjà affichée car elle l'est déjà.
                     if (nbClickG==1 && !Phrase.isEmpty()){
                         Phrase.ajouterPhrase(oldPhrases.get(oldPhrases.size()-1));
                         oldPhrases.remove(oldPhrases.size()-1);
                     }
+                    //Récupération de la phrase à afficher
                     indexPhrase = oldPhrases.size()-1;
                     phraseAffichee = oldPhrases.get(indexPhrase);
+                    //Affichage de la phrase
                     tVPhrase.setText(phraseAffichee);
+                    //On met la phrase affichée dans les phrases à afficher
                     Phrase.ajouterPhrase(phraseAffichee);
                     oldPhrases.remove(indexPhrase);
+                    //Réinitialisation du clique sur la partie droite
                     clickD=false;
                 }
             }
