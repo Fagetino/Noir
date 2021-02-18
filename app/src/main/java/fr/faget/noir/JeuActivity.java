@@ -197,22 +197,18 @@ public class JeuActivity extends AppCompatActivity {
                     btnGauche.setEnabled(false);
                 //Si c'est le premier clique sur la partie gauche de l'écran on affiche la deuxième phrase
                 //car la premiere est déjà affiché
-                } else if (nbClickG==1 && !Phrase.isEmpty()){
-                    indexPhrase = oldPhrases.size()-2;
-                    phraseAffichee = oldPhrases.get(indexPhrase);
-                    tVPhrase.setText(phraseAffichee);
-                    Phrase.ajouterPhrase(oldPhrases.get(indexPhrase+1));
-                    Phrase.ajouterPhrase(phraseAffichee);
-                    oldPhrases.remove(indexPhrase+1);
-                    oldPhrases.remove(indexPhrase);
-                } else {
+                } else{
+                    if (nbClickG==1 && !Phrase.isEmpty()){
+                        Phrase.ajouterPhrase(oldPhrases.get(oldPhrases.size()-1));
+                        oldPhrases.remove(oldPhrases.size()-1);
+                    }
                     indexPhrase = oldPhrases.size()-1;
                     phraseAffichee = oldPhrases.get(indexPhrase);
                     tVPhrase.setText(phraseAffichee);
                     Phrase.ajouterPhrase(phraseAffichee);
                     oldPhrases.remove(indexPhrase);
+                    clickD=false;
                 }
-                clickD=false;
             }
         });
     }
