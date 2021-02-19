@@ -149,7 +149,7 @@ public class Jeu {
         //Si c'est le premier clique sur la partie droite après avoir cliquer sur la partie gauche
         //on ajoute la derniere phrase de la lise aux phrases déjà affichée et on la supprime de la liste
         //des phrases à affichée car elle l'est déjà.
-        if (!clickD && !(Phrase.nbPhrases()==1)){
+        if (!clickD && Phrase.nbPhrases()!=1){
             oldPhrases.add(Phrase.getPhrase(Phrase.nbPhrases()-1));
             Phrase.supprimerPhrase(Phrase.nbPhrases()-1);
         }
@@ -195,6 +195,4 @@ public class Jeu {
             nbClickG=0;
         }
     }
-
-
 }
