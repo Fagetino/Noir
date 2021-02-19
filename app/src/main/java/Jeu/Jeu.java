@@ -11,7 +11,7 @@ public class Jeu {
     private final Context context;
     private final ArrayList<String> oldPhrases= new ArrayList<>();
     private int nbClickG=0; //Permet de verifier combien de fois on a cliquer à gauche après avoir cliqué à droite
-    private boolean clickD=false; //vrai si c'est le premier clique à droite après avoir cliqué à gauche
+    private boolean clickD=true; //vrai si c'est le premier clique à droite après avoir cliqué à gauche
 
 
 
@@ -155,22 +155,22 @@ public class Jeu {
         //Si c'est le premier clique sur la partie droite après avoir cliquer sur la partie gauche
         //on ajoute la derniere phrase de la lise aux phrases déjà affichée et on la supprime de la liste
         //des phrases à affichée car elle l'est déjà.
-        if (!clickD && Phrase.nbPhrases()>1){
+        if (!clickD && !(Phrase.nbPhrases()==1)){
             oldPhrases.add(Phrase.getPhrase(Phrase.nbPhrases()-1));
             Phrase.supprimerPhrase(Phrase.nbPhrases()-1);
         }
         //Récupération de la phrase à afficher
-        indexPhrase = Phrase.nbPhrases() - 1;
+        indexPhrase = Phrase.nbPhrases()-1;
         phraseAffichee = Phrase.getPhrase(indexPhrase);
         //Affichage de la phrase
         textView.setText(phraseAffichee);
         //On met la phrase affichée dans les phrases déjà affichée
         oldPhrases.add(phraseAffichee);
         Phrase.supprimerPhrase(indexPhrase);
-        //On remet le nombre de clique sur la partie gauche à 0
-        nbClickG=0;
         //On indique que le premier clique sur la partie droite a été effectué
         clickD=true;
+        //On remet le nombre de clique sur la partie gauche à 0
+        nbClickG=0;
     }
 
     public void afficherAnciennePhrases(TextView textView){
@@ -184,16 +184,19 @@ public class Jeu {
         //Récupération de la phrase à afficher
         indexPhrase=oldPhrases.size()-1;
         phraseAffichee = oldPhrases.get(indexPhrase);
+        //On met la phrase affichée dans les phrases à afficher sauf si la phrase précédement affichée était la phrase de fin
+        if(!fini){
+            Phrase.ajouterPhrase(phraseAffichee);
+            oldPhrases.remove(indexPhrase);
+        }
         //Affichage de la phrase
         textView.setText(phraseAffichee);
-        //On met la phrase affichée dans les phrases à afficher
-        Phrase.ajouterPhrase(phraseAffichee);
-        oldPhrases.remove(indexPhrase);
         //Réinitialisation du clique sur la partie droite
         clickD=false;
-        //On indique que la phrase de fin n'est plus affichée
+        //On indique que la phrase de fin n'est plus affichée et on réinitialise le  nombre de clique sur la partie gauche
         if (fini){
             fini=false;
+            nbClickG=0;
         }
     }
 

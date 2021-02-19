@@ -55,7 +55,9 @@ public class JeuActivity extends AppCompatActivity {
                 }else {
                     //Afficher phrase de fin
                     tVPhrase.setText(getResources().getText(R.string.phraseFin));
+                    //On désactive la partie droite car plus aucune action ne peut être effectuée
                     btnDroit.setEnabled(false);
+                    //Indique que la phrase de fin est affichée
                     jeu.setFini(true);
                 }
             }
