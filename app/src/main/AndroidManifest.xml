@@ -12,7 +12,8 @@
         <activity android:name=".PhrasesActivity" />
         <activity
             android:name=".JeuActivity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="sensorLandscape"
+            android:configChanges="keyboardHidden"/>
         <activity
             android:name=".JoueurActivity"
             android:windowSoftInputMode="adjustResize"/>
