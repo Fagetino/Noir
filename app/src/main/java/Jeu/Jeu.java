@@ -168,6 +168,7 @@ public class Jeu {
     }
 
     public void afficherAnciennePhrases(TextView textView){
+        //Incrementation du nombre de clique sur la partie gauche
         nbClickG++;
         //Si c'est le premier clique sur la partie gauche après avoir cliquer sur la partie droite
         //on ajoute la derniere phrase de la lise aux phrases à affichée et on la supprime de la liste
