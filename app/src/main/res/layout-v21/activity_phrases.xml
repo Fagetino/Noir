@@ -35,7 +35,6 @@
         android:text="@string/indicationPhrase"
         android:textColor="@color/colorText"
         android:textSize="12sp"
-        android:layout_marginLeft="5dp"
         android:layout_marginStart="5dp" />
 
     <RelativeLayout

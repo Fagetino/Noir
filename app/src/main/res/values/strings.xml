@@ -5,10 +5,11 @@
     <string name="img_logo">Logo de l\'application composé de deux bières qui trinquent.</string>
     <string name="txt_ajtJoueur">Ajouter les joueurs</string>
     <string name="txt_joueur">Joueur 1</string>
-    <string name="txt_phrase">Phrase 1</string>
+    <string name="txt_phrase">Phrase 1*</string>
     <string name="img_plus">Signe plus.</string>
     <string name="img_fleche">Signe fleche.</string>
     <string name="txt_ajtPhrase">Ajouter vos phrases</string>
     <string name="cac_phraseParDefault">Utiliser les phrases par defaut</string>
-    <string name="phraseFin">"Bah alors on a déjà fini ? On a une petite bite ? Allez recommence mon salaud !"</string>
+    <string name="phraseFin">Bah alors on a déjà fini ? On a une petite bite ? Allez recommence mon salaud !</string>
+    <string name="indicationPhrase">*Remplacer les noms des joueur 1, joueur 2 et joueur 3 respectivement par X, Y et Z.</string>
 </resources>
