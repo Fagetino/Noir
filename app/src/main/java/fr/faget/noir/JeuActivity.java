@@ -71,8 +71,6 @@ public class JeuActivity extends AppCompatActivity {
                 if (!btnDroit.isEnabled()){
                     btnDroit.setEnabled(true);
                 }
-                //On incremente le nombre de clique sur la partie gauche
-                jeu.setNbClickG(jeu.getNbClickG()+1);
                 if (jeu.getOldPhrases().isEmpty()){
                     btnGauche.setEnabled(false);
                 } else{

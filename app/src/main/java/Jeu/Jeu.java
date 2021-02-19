@@ -8,29 +8,23 @@ import java.util.ArrayList;
 import fr.faget.noir.R;
 
 public class Jeu {
-    private final Context context;
-    private final ArrayList<String> oldPhrases= new ArrayList<>();
+    //========================== Variables ==========================
+    private final Context context; //Contexte de l'application
+    private final ArrayList<String> oldPhrases= new ArrayList<>(); //Sauvegarde les phrases déjà affichée
     private int nbClickG=0; //Permet de verifier combien de fois on a cliquer à gauche après avoir cliqué à droite
     private boolean clickD=true; //vrai si c'est le premier clique à droite après avoir cliqué à gauche
-
-
-
     private boolean fini=false; //Indique que la phrase de fin est affichée
     private int indexPhrase=0; //index de la phrase à afficher
     private String phraseAffichee=""; //Phrase affichee
 
-    //Constructeur
+    //========================= Constructeur =========================
     public Jeu(Context context){
         this.context=context;
     }
 
-
+    //====================== Getters et Setters ======================
     public void setFini(boolean fini) {
         this.fini = fini;
-    }
-
-    public void setNbClickG(int nbClickG) {
-        this.nbClickG = nbClickG;
     }
 
     public ArrayList<String> getOldPhrases() {
@@ -41,7 +35,7 @@ public class Jeu {
         return nbClickG;
     }
 
-
+    //=========================== Méthodes ===========================
     public int nombreAleatoire(int borneMax){
         return (int)(Math.random()*borneMax);
     }
@@ -174,6 +168,7 @@ public class Jeu {
     }
 
     public void afficherAnciennePhrases(TextView textView){
+        nbClickG++;
         //Si c'est le premier clique sur la partie gauche après avoir cliquer sur la partie droite
         //on ajoute la derniere phrase de la lise aux phrases à affichée et on la supprime de la liste
         //des phrases déjà affichée car elle l'est déjà.
