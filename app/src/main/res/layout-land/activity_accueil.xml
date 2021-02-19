@@ -7,43 +7,25 @@
     android:baselineAligned="false"
     android:orientation="vertical">
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="13dp" />
-
     <ImageView
         android:id="@+id/img_Logo"
         android:layout_width="match_parent"
-        android:layout_height="226dp"
+        android:layout_height="230dp"
         android:contentDescription="@string/img_logo"
-        app:srcCompat="@drawable/logo" />
+        app:srcCompat="@drawable/logo"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"/>
 
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="31dp" />
+    <Button
+        android:id="@+id/b_Jouer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:drawable/editbox_background"
+        android:text="@string/b_jouer"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_gravity="center"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2" />
-
-        <Button
-            android:id="@+id/b_Jouer"
-            android:layout_width="10dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/b_jouer"
-            android:textSize="24sp" />
-
-        <Space
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="2" />
-    </LinearLayout>
 
 </LinearLayout>
