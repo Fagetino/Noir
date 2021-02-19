@@ -27,7 +27,8 @@
         android:fontFamily="@font/archivo_black_java"
         android:textColor="@color/colorText"
         android:textSize="18sp"
-        android:buttonTint="@color/colorCheckBox"/>
+        android:buttonTint="@color/colorCheckBox"
+        android:checked="true"/>
 
     <TextView
         android:layout_width="match_parent"
